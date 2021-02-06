@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input</title>
+</head>
+<body>
+N
+<input type="number" id="n"><br>
+<button onclick="sendData()">send</button>
+<br>
+<br><br><br>
+P
+<input type="number" id="p">
+K
+<input type="number" id="k">
+</body>
+<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<script>
+    function sendData(){
+        var n = $('#n').val();
+        var p = $('#p').val();
+        var k = $('#k').val();
+        $.get('https://gos4-f1a0a.firebaseio.com/single.json',function (data) {
+
+            console.log(data);
+            if (n.length==0){
+                n = data.nitrogen;
+            }
+            if (p.length==0){
+                p=data.phosphorus;
+            }
+            if (k.length==0){
+                k=data.potassium;
+            }
+            var jsdata = '{"nitrogen":'+n+',"potassium":'+k+',"phosphorus":'+p+'}';
+            console.log(jsdata);
+            jQuery.ajax({
+                accept: "application/json",
+                type: 'PUT',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "https://gos4-f1a0a.firebaseio.com/single.json",
+                data: JSON.stringify({"nitrogen":n,"potassium":k,"phosphorus":p}),
+            });
+            jQuery.ajax({
+                accept: "application/json",
+                type: 'PUT',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "https://gos4-f1a0a.firebaseio.com/datas/nitrogen.json",
+                data: JSON.stringify(n),
+            });
+            jQuery.ajax({
+                accept: "application/json",
+                type: 'PUT',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "https://gos4-f1a0a.firebaseio.com/datas/potassium.json",
+                data: JSON.stringify(k),
+            });
+            jQuery.ajax({
+                accept: "application/json",
+                type: 'PUT',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "https://gos4-f1a0a.firebaseio.com/datas/phosphorus.json",
+                data: JSON.stringify(p),
+            });
+        });
+
+    }
+</script>
+</html>
