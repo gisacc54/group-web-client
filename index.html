@@ -54,17 +54,17 @@
                     <b class="logo-icon">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                        <img src="assets/images/logo.png" alt="homepage" class="dark-logo" style="height: 40px;" />
                         <!-- Light Logo icon -->
-                        <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        <img src="assets/images/logo.png" alt="homepage" class="light-logo" style="height: 40px;"/>
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                        <!-- Light Logo text -->
-                            <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+<!--                            <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />-->
+<!--                        &lt;!&ndash; Light Logo text &ndash;&gt;-->
+<!--                            <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />-->
                         </span>
                 </a>
                 <!-- ============================================================== -->
@@ -230,11 +230,13 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <div class="mr-2">
-                                                    <span>Potassium</span>
-                                                    <h4 id="potassium"></h4>
+                                                    <span>Phosphorus</span>
+                                                    <h4 id="phosphorus"></h4>
                                                 </div>
                                                 <div class="ml-auto">
-                                                    <div class="" id="ravenue"><canvas width="76" height="55" style="display: inline-block; width: 76px; height: 55px; vertical-align: top;"></canvas></div>
+                                                    <div class="gaugejs-box">
+                                                        <canvas id="foo" class="gaugejs" height="50" width="100">guage</canvas>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -246,13 +248,11 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <div class="mr-2">
-                                                    <span>Phosphorus</span>
-                                                    <h4 id="phosphorus"></h4>
+                                                    <span>Potassium</span>
+                                                    <h4 id="potassium"></h4>
                                                 </div>
                                                 <div class="ml-auto">
-                                                    <div class="gaugejs-box">
-                                                        <canvas id="foo" class="gaugejs" height="50" width="100">guage</canvas>
-                                                    </div>
+                                                    <div class="" id="ravenue"><canvas width="76" height="55" style="display: inline-block; width: 76px; height: 55px; vertical-align: top;"></canvas></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -351,7 +351,7 @@
             $('#nitrogen').html(data.nitrogen+" mg/kg");
             $('#potassium').html(data.potassium+" mg/kg");
             $('#phosphorus').html(data.phosphorus+" mg/kg");
-            if (data.nitrogen>800){
+            if ((data.nitrogen+data.potassium+data.phosphorus)>=250){
                 $('#quality').html('High Quality');
                 $('#quality').css('color','green');
             }
